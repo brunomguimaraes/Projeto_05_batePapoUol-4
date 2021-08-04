@@ -47,7 +47,40 @@ body{
 }
 
 .chat{
-    height: calc(100vh - 160px);
-    padding: 26px 0 0 0;
+    height: calc(100vh - 80px);
+    padding: 106px 0 0 0;
     overflow: auto;
+}
+
+.message{
+    min-height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 8px;
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    border-radius: 2px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 20px;
+}
+
+.background-pink{
+    background-color: #FFDEDE;
+}
+
+.background-grey{
+    background-color: #DCDCDC
+}
+
+.background-white{
+    background-color: #FFFFFF;
+}
+
+.time-message{
+    color: #AAAAAA;   
+}
+
+strong{
+    font-weight: bold;
 }
