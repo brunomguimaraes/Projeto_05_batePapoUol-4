@@ -1,6 +1,6 @@
 let messages;
-let userName = { name: prompt('Qual seu lindo nome?') };
-
+let userName = { name: 'camilo' };
+let chatUsers;
 
 function login() {
 
@@ -13,7 +13,7 @@ function login() {
 }
 
 function failLogin(erro) {
-    userName = { name: prompt('Por favor entre com outro lindo nome pois o seu já está em uso:') }
+    userName = { name: 'camilo2' }
     login();
 }
 
@@ -31,6 +31,7 @@ function keepConnection() {
 function getServerData() {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages');
     promise.then(saveServerData);
+    getChatUsers();
 }
 
 function saveServerData(answer) {
@@ -102,6 +103,15 @@ function sendMessage() {
     promise.then(getServerData);
     document.querySelector('.input-message').value = '';
 
+}
+
+function getChatUsers() {
+    const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants');
+    promise.then(saveChatUsers);
+}
+
+function saveChatUsers(answer) {
+    chatUsers = answer.data;
 }
 
 login(userName);

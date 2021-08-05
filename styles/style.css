@@ -84,3 +84,37 @@ body{
 strong{
     font-weight: bold;
 }
+
+.participants-menu{
+    display: flex;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+    
+}
+
+.dark-menu{
+    height: 100vh;
+    width: calc(100% - 259px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.participants-live{
+    background-color: #ffffff;
+    font-size: 16px;
+    font-family: 'Roboto', 'Sans-serif';
+    width: 259px;
+}
+
+.participants-live header {
+    width: 170px;
+    height: 80px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
