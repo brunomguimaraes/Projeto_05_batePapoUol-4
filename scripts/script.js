@@ -2,23 +2,27 @@ let messages;
 let userName = { name: prompt('Qual seu lindo nome?') };
 
 
-function login(userName) {
+function login() {
 
     const promise = axios.post(
         'https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants',
         userName);
-    promise.then(getServerData);
+    promise.then(confirmLogin);
 
-    setInterval(keepConnection, 5000, userName);
+}
+function confirmLogin() {
+    getServerData();
+    keepConnection();
+    setInterval(getServerData, 3000);
+    setInterval(keepConnection, 5000);
 }
 
-function keepConnection(userName) {
+function keepConnection() {
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status', userName);
 }
 
 function getServerData() {
-    const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages')
-    console.log(promise);
+    const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages');
     promise.then(saveServerData);
 }
 
@@ -59,19 +63,37 @@ function renderMessages(messages) {
                 break;
 
             case 'private_message':
-
-                chatWindow.innerHTML += `
+                if (messages[i].to === userName) {
+                    chatWindow.innerHTML += `
                 <li id=${i} class='message background-pink'>
                     <p>
                         <spam class='time-message'>(${messages[i].time})</spam> <strong>${messages[i].from} </strong> reservadamente para <strong>${messages[i].to}: </strong> ${messages[i].text}
                     </p>
                 </li>
                 `;
+                }
 
                 break;
         }
     }
     chatWindow.querySelector('.message:last-child').scrollIntoView();
+}
+
+function sendMessage() {
+
+    const message = {
+        from: userName.name,
+        to: 'Todos',
+        type: 'message',
+        text: document.querySelector('.input-message').value
+    }
+
+    const promise = axios.post(
+        'https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages',
+        message);
+    promise.then(getServerData);
+    document.querySelector('.input-message').value = '';
+
 }
 
 login(userName);
