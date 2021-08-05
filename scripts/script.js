@@ -8,8 +8,15 @@ function login() {
         'https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants',
         userName);
     promise.then(confirmLogin);
+    promise.catch(failLogin);
 
 }
+
+function failLogin(erro) {
+    userName = { name: prompt('Por favor entre com outro lindo nome pois o seu já está em uso:') }
+    login();
+}
+
 function confirmLogin() {
     getServerData();
     keepConnection();
@@ -63,7 +70,8 @@ function renderMessages(messages) {
                 break;
 
             case 'private_message':
-                if (messages[i].to === userName) {
+
+                if ((messages[i].to === userName || messages[i].from === userName)) {
                     chatWindow.innerHTML += `
                 <li id=${i} class='message background-pink'>
                     <p>
