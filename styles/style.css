@@ -147,7 +147,7 @@ strong{
     color: #53BC26;
     font-weight: bolder; 
     margin-right: 30px;
-    opacity: 1;
+    opacity: 0;
 }
 
 .hide{
@@ -157,4 +157,8 @@ strong{
 
 .button{
     cursor: pointer;
+}
+
+.check{
+    opacity: 1;
 }

@@ -2,6 +2,11 @@ let messages;
 let userName = { name: 'camilo' };
 let chatUsers;
 
+let messageConfiguration = {
+    to: 'Todos',
+    type: 'message'
+}
+
 function login() {
 
     const promise = axios.post(
@@ -72,7 +77,7 @@ function renderMessages(messages) {
 
             case 'private_message':
 
-                if ((messages[i].to === userName || messages[i].from === userName)) {
+                if ((messages[i].to === userName.name || messages[i].from === userName.name)) {
                     chatWindow.innerHTML += `
                 <li id=${i} class='message background-pink'>
                     <p>
@@ -92,8 +97,8 @@ function sendMessage() {
 
     const message = {
         from: userName.name,
-        to: 'Todos',
-        type: 'message',
+        to: messageConfiguration.to,
+        type: messageConfiguration.type,
         text: document.querySelector('.input-message').value
     }
 
@@ -116,36 +121,61 @@ function saveChatUsers(answer) {
 }
 
 function renderParticipants() {
+    chatUsers.unshift({ name: 'Todos' })
     const participantsWindow = document.querySelector('.all-participants');
-    participantsWindow.innerHTML = `
-    <li class="visibility-menu-item">
-        <div class="side-icon">
-            <ion-icon name="people"></ion-icon>
-        </div>
-        <div class='visibility-menu-item-label'>
-            <p>Todos</p>
-        </div>
-        <ion-icon class="checkmark" name="checkmark"></ion-icon>
-    </li>
-    `;
+    participantsWindow.innerHTML = '';
+    let checked = false;
 
     for (let i = 0; i < chatUsers.length; i++) {
-        participantsWindow.innerHTML += `
-        <li class="visibility-menu-item">
-            <div class="side-icon">
-                <ion-icon name="person-circle"></ion-icon>
-            </div>
-            <div class='visibility-menu-item-label'>
-                <p>${chatUsers[i].name}</p>
-            </div>
-            <ion-icon class="checkmark hide" name="checkmark"></ion-icon>
-        </li>
-        `;
+        if (chatUsers[i].name === messageConfiguration.to) {
+            participantsWindow.innerHTML += `
+            <li id=${i} class="visibility-menu-item button" onclick="changeMessageDestinatary(this)">
+                <div class="side-icon">
+                    <ion-icon name="person-circle"></ion-icon>
+                </div>
+                <div class='visibility-menu-item-label'>
+                    <p>${chatUsers[i].name}</p>
+                </div>
+                <ion-icon class="checkmark check" name="checkmark"></ion-icon>
+            </li>
+            `;
+            checked = true;
+        }
+
+        else {
+            participantsWindow.innerHTML += `
+            <li id=${i} class="visibility-menu-item button" onclick="changeMessageDestinatary(this)">
+                <div class="side-icon">
+                    <ion-icon name="person-circle"></ion-icon>
+                </div>
+                <div class='visibility-menu-item-label'>
+                    <p>${chatUsers[i].name}</p>
+                </div>
+                <ion-icon class="checkmark" name="checkmark"></ion-icon>
+            </li>
+            `;
+        }
+    }
+    if (!checked) {
+        participantsWindow.querySelector('.checkmark').classList.add('check');
+        messageConfiguration.to = 'Todos';
     }
 }
 
 function toggleSideMenu() {
     document.querySelector('.side-menu').classList.toggle('hide');
+}
+
+function changeMessageDestinatary(element) {
+    element.parentNode.querySelector('.check').classList.remove('check');
+    messageConfiguration.to = chatUsers[element.id].name;
+    element.querySelector('.checkmark').classList.add('check');
+}
+
+function changeMessageType(element) {
+    element.parentNode.querySelector('.check').classList.remove('check');
+    messageConfiguration.type = element.id;
+    element.querySelector('.checkmark').classList.add('check');
 }
 
 login(userName);
