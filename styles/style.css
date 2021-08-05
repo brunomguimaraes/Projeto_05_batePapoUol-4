@@ -49,7 +49,9 @@ body{
 .chat{
     height: calc(100vh - 80px);
     padding: 106px 0 0 0;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 .message{
@@ -85,7 +87,7 @@ strong{
     font-weight: bold;
 }
 
-.participants-menu{
+.side-menu{
     display: flex;
     position: fixed;
     top:0;
@@ -107,6 +109,7 @@ strong{
     font-size: 16px;
     font-family: 'Roboto', 'Sans-serif';
     width: 259px;
+    height: 100vh;
 }
 
 .participants-live header {
@@ -117,4 +120,41 @@ strong{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.all-participants{
+    max-height: calc(100vh - 250px);
+    overflow-y: scroll;
+
+}
+
+.visibility-menu-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 13px;
+}
+
+
+.visibility-menu-item-label{
+    width: 150px;
+}
+
+.side-icon {
+    margin-left: 16px;
+}
+
+.checkmark{
+    color: #53BC26;
+    font-weight: bolder; 
+    margin-right: 30px;
+    opacity: 1;
+}
+
+.hide{
+    opacity: 0;
+    z-index: -1;
+}
+
+.button{
+    cursor: pointer;
 }

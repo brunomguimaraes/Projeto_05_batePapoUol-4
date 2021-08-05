@@ -20,17 +20,48 @@
 <body>
     <header class="bar top-bar">
         <img class="logo-img" src="./img/Logo.jpg" alt="Logo">
-        <ion-icon class='people-icon' name="people"></ion-icon>
+        <div class="button" onclick="toggleSideMenu()">
+            <ion-icon class='people-icon' name="people"></ion-icon>
+        </div>
     </header>
 
-    <aside class="participants-menu">
-        <div class="dark-menu">
+    <aside class="side-menu">
+        <div class="dark-menu button" onclick="toggleSideMenu()">
 
         </div>
         <div class="participants-live">
             <header>
                 <p><strong>Escolha um contato para enviar mensagem:</strong></p>
             </header>
+
+            <ul class="all-participants">
+
+            </ul>
+
+            <header>
+                <p><strong>Escolha a visibilidade:</strong></p>
+            </header>
+            <ul class='visibility-menu'>
+                <li id="message" class="visibility-menu-item">
+                    <div class="side-icon">
+                        <ion-icon class="lock-open" name="lock-open"></ion-icon>
+                    </div>
+                    <div class='visibility-menu-item-label'>
+                        <p>Público</p>
+                    </div>
+                    <ion-icon class="checkmark" name="checkmark"></ion-icon>
+                </li>
+
+                <li id="private_message" class="visibility-menu-item">
+                    <div class="side-icon">
+                        <ion-icon class="lock-close" name="lock-closed"></ion-icon>
+                    </div>
+                    <div class='visibility-menu-item-label'>
+                        <p>Reservadamente</p>
+                    </div>
+                    <ion-icon class="checkmark hide" name="checkmark"></ion-icon>
+                </li>
+            </ul>
         </div>
     </aside>
 

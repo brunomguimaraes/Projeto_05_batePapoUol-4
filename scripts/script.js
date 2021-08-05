@@ -112,6 +112,40 @@ function getChatUsers() {
 
 function saveChatUsers(answer) {
     chatUsers = answer.data;
+    renderParticipants();
+}
+
+function renderParticipants() {
+    const participantsWindow = document.querySelector('.all-participants');
+    participantsWindow.innerHTML = `
+    <li class="visibility-menu-item">
+        <div class="side-icon">
+            <ion-icon name="people"></ion-icon>
+        </div>
+        <div class='visibility-menu-item-label'>
+            <p>Todos</p>
+        </div>
+        <ion-icon class="checkmark" name="checkmark"></ion-icon>
+    </li>
+    `;
+
+    for (let i = 0; i < chatUsers.length; i++) {
+        participantsWindow.innerHTML += `
+        <li class="visibility-menu-item">
+            <div class="side-icon">
+                <ion-icon name="person-circle"></ion-icon>
+            </div>
+            <div class='visibility-menu-item-label'>
+                <p>${chatUsers[i].name}</p>
+            </div>
+            <ion-icon class="checkmark hide" name="checkmark"></ion-icon>
+        </li>
+        `;
+    }
+}
+
+function toggleSideMenu() {
+    document.querySelector('.side-menu').classList.toggle('hide');
 }
 
 login(userName);
