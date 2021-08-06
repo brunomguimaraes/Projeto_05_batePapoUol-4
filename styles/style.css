@@ -95,21 +95,27 @@ strong{
     height: 100vh;
     width: 100%;
     z-index: 2;
-    
+    position: absolute;
 }
 
 .dark-menu{
     height: 100vh;
     width: calc(100% - 259px);
     background-color: rgba(0, 0, 0, 0.6);
+    transition: all linear 0.5s;
+    position: relative;
 }
 
 .participants-live{
     background-color: #ffffff;
+    position: relative;
     font-size: 16px;
     font-family: 'Roboto', 'Sans-serif';
     width: 259px;
     height: 100vh;
+    transition: all linear 0.5s;
+    top: 0;
+    left: 0;
 }
 
 .participants-live header {
@@ -121,6 +127,7 @@ strong{
     justify-content: center;
     align-items: center;
 }
+
 .all-participants{
     max-height: calc(100vh - 250px);
     overflow-y: scroll;
@@ -153,6 +160,8 @@ strong{
 .hide{
     opacity: 0;
     z-index: -1;
+    left: 100vw;
+    transition: all linear 0.2s;
 }
 
 .button{

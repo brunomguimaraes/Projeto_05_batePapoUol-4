@@ -25,8 +25,10 @@ function failLogin(erro) {
 function confirmLogin() {
     getServerData();
     keepConnection();
+    getChatUsers();
     setInterval(getServerData, 3000);
     setInterval(keepConnection, 5000);
+    setInterval(getChatUsers, 10000);
 }
 
 function keepConnection() {
@@ -36,7 +38,6 @@ function keepConnection() {
 function getServerData() {
     const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages');
     promise.then(saveServerData);
-    getChatUsers();
 }
 
 function saveServerData(answer) {
@@ -164,6 +165,8 @@ function renderParticipants() {
 
 function toggleSideMenu() {
     document.querySelector('.side-menu').classList.toggle('hide');
+    document.querySelector('.dark-menu').classList.toggle('hide');
+    document.querySelector('.participants-live').classList.toggle('hide');
 }
 
 function changeMessageDestinatary(element) {
@@ -179,3 +182,13 @@ function changeMessageType(element) {
 }
 
 login(userName);
+
+let input = document.querySelector(".input-message");
+
+
+input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        sendMessage();
+    }
+});
