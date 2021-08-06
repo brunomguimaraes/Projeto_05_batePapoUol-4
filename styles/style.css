@@ -50,6 +50,7 @@ body{
     text-align: center;
     border: 1px solid #D7D7D7;
     border-radius: 4px;
+    z-index: 1;
 }
 
 .bar{
