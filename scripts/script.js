@@ -149,7 +149,7 @@ function renderMessages(messages) {
                 break;
         }
     }
-    chatWindow.querySelector('.message:last-child').scrollIntoView();
+    chatWindow.querySelector('.message:last-child').scrollIntoView({ block: 'end' });
 }
 
 function saveServerData(answer) {
