@@ -235,6 +235,7 @@ function renderMain() {
 function confirmLogin() {
     document.querySelector('.login-entries').classList.add('display-none');
     document.querySelector('.login-gif').classList.remove('display-none');
+    document.querySelector('.login-screen').classList.add('opacity');
     setTimeout(
         () => {
             renderMain();
@@ -266,4 +267,3 @@ document.querySelector(".login-input").addEventListener("keyup", function (event
         login();
     }
 });
-
