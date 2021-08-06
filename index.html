@@ -18,61 +18,26 @@
 </head>
 
 <body>
-    <header class="bar top-bar">
-        <img class="logo-img" src="./img/Logo.jpg" alt="Logo">
-        <div class="button" onclick="toggleSideMenu()">
-            <ion-icon class='people-icon' name="people"></ion-icon>
+    <main>
+        <div class="login-screen">
+            <figure class="login-img">
+                <img class="login-img" src="./img/Logo.jpg" alt="Logo Bate Papo Uol">
+            </figure>
+
+            <div class="login-load">
+                <div class="login-entries">
+                    <div>
+                        <input type="text" class="login-input" placeholder="Digite seu Nome">
+                        <p class="fail-message">Usuário existente</p>
+                    </div>
+                    <button class="login-button button" onclick="login()">Entrar</button>
+                </div>
+                <figure class="login-gif display-none">
+                    <img src="./img/load.gif" alt="Loading" class="login-gif">
+                </figure>
+            </div>
         </div>
-    </header>
-
-    <aside class="side-menu hide">
-        <div class="dark-menu button hide" onclick="toggleSideMenu()">
-
-        </div>
-        <div class="participants-live hide">
-            <header>
-                <p><strong>Escolha um contato para enviar mensagem:</strong></p>
-            </header>
-
-            <ul class="all-participants">
-
-            </ul>
-
-            <header>
-                <p><strong>Escolha a visibilidade:</strong></p>
-            </header>
-            <ul class='visibility-menu'>
-                <li id="message" class="visibility-menu-item button" onclick="changeMessageType(this)">
-                    <div class="side-icon">
-                        <ion-icon class="lock-open" name="lock-open"></ion-icon>
-                    </div>
-                    <div class='visibility-menu-item-label'>
-                        <p>Público</p>
-                    </div>
-                    <ion-icon class="checkmark check" name="checkmark"></ion-icon>
-                </li>
-
-                <li id="private_message" class="visibility-menu-item button" onclick="changeMessageType(this)">
-                    <div class="side-icon">
-                        <ion-icon class="lock-close" name="lock-closed"></ion-icon>
-                    </div>
-                    <div class='visibility-menu-item-label'>
-                        <p>Reservadamente</p>
-                    </div>
-                    <ion-icon class="checkmark" name="checkmark"></ion-icon>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
-    <ul class="chat">
-
-    </ul>
-
-    <footer class="bar send-field">
-        <input class="input-message" type="text" placeholder="Escreva aqui...">
-        <ion-icon onclick="sendMessage()" class="paper-plane-outline button" name="paper-plane-outline"></ion-icon>
-    </footer>
+    </main>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
